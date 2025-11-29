@@ -3,10 +3,10 @@ spring:
     name: CleanArchitecture
 
   datasource:
-    url: jdbc:postgresql://localhost:5431/CleanArchitectureDB
+    url: ${DB_URL}
     driver-class-name: org.postgresql.Driver
-    username: postgres
-    password: postgres
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
 
   jpa:
     show-sql: true

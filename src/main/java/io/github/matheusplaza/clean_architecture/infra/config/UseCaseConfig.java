@@ -1,10 +1,7 @@
 package io.github.matheusplaza.clean_architecture.infra.config;
 
 import io.github.matheusplaza.clean_architecture.core.gateway.EventGateway;
-import io.github.matheusplaza.clean_architecture.core.useCases.CreateEventCase;
-import io.github.matheusplaza.clean_architecture.core.useCases.CreateEventCaseImpl;
-import io.github.matheusplaza.clean_architecture.core.useCases.GetEventByIdCase;
-import io.github.matheusplaza.clean_architecture.core.useCases.GetEventByIdCaseImpl;
+import io.github.matheusplaza.clean_architecture.core.useCases.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -19,5 +16,10 @@ public class UseCaseConfig {
     @Bean
     public GetEventByIdCase getEventByIdCase(EventGateway eventGateway) {
         return new GetEventByIdCaseImpl(eventGateway);
+    }
+
+    @Bean
+    public ListEventsCase listEventsCase(EventGateway eventGateway) {
+        return new ListEventsCaseImpl(eventGateway);
     }
 }

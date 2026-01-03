@@ -11,5 +11,5 @@ public interface EventGateway {
 
     Optional<Event> getEventByIdCase(Long id);
 
-    Optional<List<Event>> ListEvents();
+    List<Event> ListEvents();
 }

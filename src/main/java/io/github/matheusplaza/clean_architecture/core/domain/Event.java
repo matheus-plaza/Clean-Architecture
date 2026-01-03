@@ -13,5 +13,6 @@ public record Event(Long id,
                     String location,
                     Integer capacity,
                     String organizer,
+                    String imgUrl,
                     EventType type) {
 }

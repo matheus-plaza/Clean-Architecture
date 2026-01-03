@@ -1,0 +1,1 @@
+ALTER TABLE t_event ADD COLUMN img_url TEXT;

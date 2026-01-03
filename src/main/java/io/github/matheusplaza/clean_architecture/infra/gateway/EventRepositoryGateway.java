@@ -9,6 +9,8 @@ import io.github.matheusplaza.clean_architecture.infra.persistence.EventReposito
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 @RequiredArgsConstructor
 public class EventRepositoryGateway implements EventGateway {
@@ -23,5 +25,10 @@ public class EventRepositoryGateway implements EventGateway {
         EventEntity entity = entityMapper.toEntity(event);
         return domainMapper.toDomain(repository.save(entity));
 
+    }
+
+    @Override
+    public Optional<Event> getEventByIdCase(Long id) {
+        return repository.findById(id).map(domainMapper::toDomain);
     }
 }

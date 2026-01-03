@@ -1,5 +1,6 @@
 package io.github.matheusplaza.clean_architecture.infra.config;
 
+import io.github.matheusplaza.clean_architecture.core.gateway.EventGateway;
 import io.github.matheusplaza.clean_architecture.core.useCases.CreateEventCase;
 import io.github.matheusplaza.clean_architecture.core.useCases.CreateEventCaseImpl;
 import io.github.matheusplaza.clean_architecture.core.useCases.FindEventCase;
@@ -11,8 +12,8 @@ import org.springframework.context.annotation.Configuration;
 public class UseCaseConfig {
 
     @Bean
-    public CreateEventCase createEventCase() {
-        return new CreateEventCaseImpl();
+    public CreateEventCase createEventCase(EventGateway eventGateway) {
+        return new CreateEventCaseImpl(eventGateway);
     }
 
     @Bean

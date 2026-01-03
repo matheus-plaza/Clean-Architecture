@@ -6,11 +6,13 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "t_events")
+@Table(name = "t_event")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -38,5 +40,7 @@ public class EventEntity {
     @Column(name = "img_url")
     private String imgUrl;
     @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "event_type")
+    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
     private EventType type;
 }

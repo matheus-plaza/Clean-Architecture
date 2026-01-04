@@ -1,8 +1,8 @@
 package io.github.matheusplaza.clean_architecture.core.useCases;
 
 import io.github.matheusplaza.clean_architecture.core.domain.Event;
-import io.github.matheusplaza.clean_architecture.core.exceptions.EventAlreadyExistsException;
 import io.github.matheusplaza.clean_architecture.core.gateway.EventGateway;
+import io.github.matheusplaza.clean_architecture.core.utils.IdentifierGeneretorUtil;
 
 public class CreateEventCaseImpl implements CreateEventCase {
 
@@ -14,9 +14,12 @@ public class CreateEventCaseImpl implements CreateEventCase {
 
     @Override
     public Event execute(Event event) {
-        if (eventGateway.existsByIdentifier(event.identifier())) {
-            throw new EventAlreadyExistsException("Event with identifier " + event.identifier() + " already exists.");
-        }
-        return eventGateway.createEvent(event);
+
+        String identifier;
+        do {
+            identifier = IdentifierGeneretorUtil.execute();
+        } while (eventGateway.existsByIdentifier(identifier));
+
+        return eventGateway.createEvent(event.withIdentifier(identifier));
     }
 }

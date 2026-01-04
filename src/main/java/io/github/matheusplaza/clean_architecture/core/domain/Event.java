@@ -15,4 +15,20 @@ public record Event(Long id,
                     String organizer,
                     String imgUrl,
                     EventType type) {
+
+    public Event withIdentifier(String newIdentifier) {
+        return new Event(
+                this.id(),
+                this.name(),
+                this.description(),
+                newIdentifier,
+                this.startDate(),
+                this.finalDate(),
+                this.location(),
+                this.capacity(),
+                this.organizer(),
+                this.imgUrl(),
+                this.type()
+        );
+    }
 }

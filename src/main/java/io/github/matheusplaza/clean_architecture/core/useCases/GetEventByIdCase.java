@@ -6,5 +6,5 @@ import java.util.Optional;
 
 public interface GetEventByIdCase {
 
-    public Optional<Event> execute(Long id);
+    public Event execute(Long id);
 }

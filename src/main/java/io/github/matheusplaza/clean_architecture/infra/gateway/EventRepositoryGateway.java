@@ -25,7 +25,6 @@ public class EventRepositoryGateway implements EventGateway {
     public Event createEvent(Event event) {
         EventEntity entity = entityMapper.toEntity(event);
         return domainMapper.toDomain(repository.save(entity));
-
     }
 
     @Override
@@ -39,6 +38,11 @@ public class EventRepositoryGateway implements EventGateway {
                 .stream()
                 .map(domainMapper::toDomain)
                 .toList();
+    }
+
+    @Override
+    public boolean existsByIdentifier(String identifier) {
+        return repository.existsByIdentifier(identifier);
     }
 
 

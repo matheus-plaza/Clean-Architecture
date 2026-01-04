@@ -1,9 +1,8 @@
 package io.github.matheusplaza.clean_architecture.core.useCases;
 
 import io.github.matheusplaza.clean_architecture.core.domain.Event;
+import io.github.matheusplaza.clean_architecture.core.exceptions.EventNotFoundException;
 import io.github.matheusplaza.clean_architecture.core.gateway.EventGateway;
-
-import java.util.Optional;
 
 public class GetEventByIdCaseImpl implements GetEventByIdCase {
 
@@ -14,8 +13,8 @@ public class GetEventByIdCaseImpl implements GetEventByIdCase {
     }
 
     @Override
-    public Optional<Event> execute(Long id) {
+    public Event execute(Long id) {
 
-        return eventGateway.getEventByIdCase(id);
+        return eventGateway.getEventByIdCase(id).orElseThrow(() -> new EventNotFoundException("Event not found"));
     }
 }

@@ -12,4 +12,6 @@ public interface EventGateway {
     Optional<Event> getEventByIdCase(Long id);
 
     List<Event> ListEvents();
+
+    boolean existsByIdentifier(String identifier);
 }

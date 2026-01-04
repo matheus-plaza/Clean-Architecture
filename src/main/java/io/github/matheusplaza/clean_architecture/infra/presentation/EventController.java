@@ -32,9 +32,7 @@ public class EventController {
     public ResponseEntity<EventDTO> getEventById(@PathVariable Long id) {
         return ResponseEntity.ok(
                 eventDomainMapper.toDTO(
-                        getEventByIdCase.execute(id)
-                                .orElseThrow(IllegalArgumentException::new)));
-
+                        getEventByIdCase.execute(id)));
     }
 
     @GetMapping

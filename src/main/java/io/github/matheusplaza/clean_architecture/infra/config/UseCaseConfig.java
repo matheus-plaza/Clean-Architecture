@@ -22,4 +22,9 @@ public class UseCaseConfig {
     public ListEventsCase listEventsCase(EventGateway eventGateway) {
         return new ListEventsCaseImpl(eventGateway);
     }
+
+    @Bean
+    public GetEventByIdentifierCase getEventByIdentifierCase(EventGateway eventGateway) {
+        return new GetEventByIdentifierCaseImpl(eventGateway);
+    }
 }

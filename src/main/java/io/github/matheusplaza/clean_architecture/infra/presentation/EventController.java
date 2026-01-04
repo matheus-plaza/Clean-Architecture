@@ -3,6 +3,7 @@ package io.github.matheusplaza.clean_architecture.infra.presentation;
 import io.github.matheusplaza.clean_architecture.core.domain.Event;
 import io.github.matheusplaza.clean_architecture.core.useCases.CreateEventCase;
 import io.github.matheusplaza.clean_architecture.core.useCases.GetEventByIdCase;
+import io.github.matheusplaza.clean_architecture.core.useCases.GetEventByIdentifierCase;
 import io.github.matheusplaza.clean_architecture.core.useCases.ListEventsCase;
 import io.github.matheusplaza.clean_architecture.infra.dtos.EventDTO;
 import io.github.matheusplaza.clean_architecture.infra.mapper.EventDomainMapper;
@@ -21,6 +22,7 @@ public class EventController {
     private final CreateEventCase createEventCase;
     private final GetEventByIdCase getEventByIdCase;
     private final ListEventsCase listEventsCase;
+    private final GetEventByIdentifierCase getEventByIdentifierCase;
 
     @PostMapping
     public ResponseEntity<EventDTO> createEvent(@RequestBody EventDTO dto) {
@@ -41,5 +43,11 @@ public class EventController {
                 .stream()
                 .map(eventDomainMapper::toDTO)
                 .toList());
+    }
+
+    @GetMapping(params = "identifier")
+    public ResponseEntity<EventDTO> getEventByIdentifier(@RequestParam String identifier) {
+        return ResponseEntity.ok(eventDomainMapper.toDTO(
+                getEventByIdentifierCase.execute(identifier)));
     }
 }

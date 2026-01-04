@@ -9,9 +9,11 @@ public interface EventGateway {
 
     Event createEvent(Event event);
 
-    Optional<Event> getEventByIdCase(Long id);
+    Optional<Event> getEventById(Long id);
 
     List<Event> ListEvents();
 
     boolean existsByIdentifier(String identifier);
+
+    Optional<Event> getEventByIdentifier(String identifier);
 }

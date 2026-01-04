@@ -28,7 +28,7 @@ public class EventRepositoryGateway implements EventGateway {
     }
 
     @Override
-    public Optional<Event> getEventByIdCase(Long id) {
+    public Optional<Event> getEventById(Long id) {
         return repository.findById(id).map(domainMapper::toDomain);
     }
 
@@ -45,5 +45,10 @@ public class EventRepositoryGateway implements EventGateway {
         return repository.existsByIdentifier(identifier);
     }
 
+    @Override
+    public Optional<Event> getEventByIdentifier(String identifier) {
+        return repository.findByIdentifier(identifier)
+                .map(domainMapper::toDomain);
+    }
 
 }

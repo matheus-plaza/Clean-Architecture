@@ -4,17 +4,16 @@ import io.github.matheusplaza.clean_architecture.core.domain.Event;
 import io.github.matheusplaza.clean_architecture.core.exceptions.EventNotFoundException;
 import io.github.matheusplaza.clean_architecture.core.gateway.EventGateway;
 
-public class GetEventByIdCaseImpl implements GetEventByIdCase {
+public class GetEventByIdentifierCaseImpl implements GetEventByIdentifierCase {
 
     private final EventGateway eventGateway;
 
-    public GetEventByIdCaseImpl(EventGateway eventGateway) {
+    public GetEventByIdentifierCaseImpl(EventGateway eventGateway) {
         this.eventGateway = eventGateway;
     }
 
     @Override
-    public Event execute(Long id) {
-
-        return eventGateway.getEventById(id).orElseThrow(() -> new EventNotFoundException("Event not found"));
+    public Event execute(String identifier) {
+        return eventGateway.getEventByIdentifier(identifier).orElseThrow(() -> new EventNotFoundException("Event not found with identifier: " + identifier));
     }
 }
